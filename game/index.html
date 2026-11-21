@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sunset Cove — Spot the Difference</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: linear-gradient(180deg, #1d2b53 0%, #29366f 55%, #3b4a8a 100%);
+    color: #fff7e6; min-height: 100vh; display: flex; flex-direction: column;
+    align-items: center; padding: 18px 10px 26px;
+  }
+  h1 { font-size: 34px; letter-spacing: 1px; text-shadow: 0 2px 0 #141f42; }
+  h1 .accent { color: #ffb347; }
+  .sub { font-style: italic; color: #cfd8ff; margin: 4px 0 12px; font-size: 15px; }
+  #hud {
+    display: flex; gap: 14px; align-items: center; flex-wrap: wrap; justify-content: center;
+    background: rgba(10, 16, 40, .55); border: 2px solid #ffb347; border-radius: 12px;
+    padding: 8px 18px; margin-bottom: 12px; font-size: 18px;
+  }
+  #hud b { color: #ffd97a; font-size: 22px; }
+  #hud button {
+    font: inherit; font-size: 15px; cursor: pointer; border: none; border-radius: 8px;
+    padding: 5px 14px; background: #ffb347; color: #40260a; font-weight: bold;
+  }
+  #hud button:hover { background: #ffc978; }
+  #stage { position: relative; }
+  canvas {
+    background: #87b5d9; border-radius: 14px; border: 3px solid #0e1838;
+    box-shadow: 0 14px 40px rgba(0,0,0,.5); cursor: pointer; max-width: 96vw; height: auto;
+  }
+  #banner {
+    position: absolute; inset: 0; display: none; align-items: center; justify-content: center;
+    background: rgba(12, 18, 46, .55); border-radius: 14px; text-align: center;
+  }
+  #banner .card {
+    background: #fff7e6; color: #33240d; border-radius: 14px; padding: 26px 40px;
+    border: 3px solid #ffb347; box-shadow: 0 10px 30px rgba(0,0,0,.5);
+  }
+  #banner h2 { font-size: 32px; margin-bottom: 6px; }
+  #banner p { font-size: 17px; margin-bottom: 12px; }
+  #banner button {
+    font: inherit; font-size: 16px; cursor: pointer; border: none; border-radius: 8px;
+    padding: 8px 20px; background: #e2703a; color: #fff; font-weight: bold;
+  }
+  .tips { margin-top: 12px; color: #aebadd; font-size: 13.5px; font-style: italic; }
+</style>
+</head>
+<body>
+  <h1>Sunset Cove <span class="accent">· Spot the Difference</span></h1>
+  <p class="sub">Two pictures of the little café by the sea — seven things have changed. Click a difference in either picture.</p>
+  <div id="hud">
+    <span>Differences remaining: <b id="remaining">7</b></span>
+    <span>Found: <b id="found">0</b> / 7</span>
+    <span>Time: <b id="clock">0:00</b></span>
+    <span>Mistakes: <b id="misses">0</b></span>
+    <button id="hintBtn" type="button">Hint</button>
+    <button id="againBtn" type="button">Restart</button>
+  </div>
+  <div id="stage">
+    <canvas id="game" width="1120" height="470"></canvas>
+    <div id="banner">
+      <div class="card">
+        <h2>🎉 You found them all!</h2>
+        <p id="winText">Every difference spotted.</p>
+        <button id="winBtn" type="button">Play again</button>
+      </div>
+    </div>
+  </div>
+  <p class="tips">Tip: a found difference is ringed in gold on both pictures. Press H for a hint, R to restart.</p>
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
